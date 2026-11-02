@@ -5,6 +5,7 @@ import httpx
 
 # Functions checks URL status
 def check_url(url: str) -> dict:
+    """Check a URL and return its status, response time and availability."""
     start = time.perf_counter()
     try:
         response = httpx.get(url, timeout=5, follow_redirects=True)
