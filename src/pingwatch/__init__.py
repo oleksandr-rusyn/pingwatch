@@ -3,7 +3,9 @@ import time
 import httpx
 
 
+# Functions checks URL status
 def check_url(url: str) -> dict:
+    """Check a URL and return its status, response time and availability."""
     start = time.perf_counter()
     try:
         response = httpx.get(url, timeout=5, follow_redirects=True)
@@ -12,16 +14,16 @@ def check_url(url: str) -> dict:
             "url": url,
             "status_code": None,
             "response_time_ms": None,
-            "is-up": False,
+            "is_up": False,
         }
 
     end = time.perf_counter()
 
     return {
-        "url":url,
-        "status_code":response.status_code,
-        "response_time_ms":(end-start) * 1000,
-        "is-up":response.status_code < 400,
+        "url": url,
+        "status_code": response.status_code,
+        "response_time_ms": round((end - start) * 1000, 1),
+        "is_up": response.status_code < 400,
     }
 
 
