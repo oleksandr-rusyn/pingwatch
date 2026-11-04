@@ -1,7 +1,7 @@
 import httpx
 import respx
 
-from pingwatch import check_url
+from pingwatch.checker import check_url
 
 URL = "https://example.com"
 
