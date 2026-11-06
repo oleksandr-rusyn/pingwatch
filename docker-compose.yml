@@ -1,0 +1,14 @@
+services:
+  db:
+    image: docker.io/library/postgres:18
+    environment:
+      POSTGRES_USER: pingwatch
+      POSTGRES_PASSWORD: pingwatch
+      POSTGRES_DB: pingwatch
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql
+
+volumes:
+  pgdata:
