@@ -1,4 +1,6 @@
 from pingwatch.checker import check_url
+from pingwatch.db import SessionLocal
+from pingwatch.models import Check
 
 
 def main() -> None:
@@ -7,5 +9,9 @@ def main() -> None:
         "https://httpbin.org/status/500",
         "https://no-such-site.invalid",
     ]
-    for url in urls:
-        print(check_url(url))
+    with SessionLocal() as session:
+        for url in urls:
+            result = check_url(url)
+            print(result)
+            session.add(Check(**result))
+        session.commit()
