@@ -2,11 +2,11 @@ services:
   db:
     image: docker.io/library/postgres:18
     environment:
-      POSTGRES_USER: pingwatch
-      POSTGRES_PASSWORD: pingwatch
-      POSTGRES_DB: pingwatch
+      POSTGRES_USER: ${LOCAL_PG_USER:?set in .env}
+      POSTGRES_PASSWORD: ${LOCAL_PG_PASSWORD:?set in .env}
+      POSTGRES_DB: ${LOCAL_PG_DB:?set in .env}
     ports:
-      - "5432:5432"
+      - "${LOCAL_PG_HOST:-127.0.0.1}:${LOCAL_PG_PORT:-5432}:5432"
     volumes:
       - pgdata:/var/lib/postgresql
 

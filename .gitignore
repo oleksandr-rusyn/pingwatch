@@ -8,4 +8,19 @@ wheels/
 
 # Virtual environments
 .venv
+.virtualenv/
+env/
+venv/
+
+# Secrets (keep the example templates)
+.env
+.env.*
+.envrc
+*.env
+!.env.example
+!.env.sample
+!.env.*.example
+!.env.*.sample
+
+# IDE
 .idea/
