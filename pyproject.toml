@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "Self-hosted website uptime monitor with Telegram alerts"
 readme = "README.md"
 authors = [
-    { name = "redgi", email = "sasharusyn2004@gmail.com" }
+    { name = "redgi", email = "119977934+oleksandr-rusyn@users.noreply.github.com" }
 ]
 requires-python = ">=3.14"
 dependencies = [
@@ -12,6 +12,7 @@ dependencies = [
     "fastapi[standard]>=0.162.1",
     "httpx>=0.28.1",
     "psycopg[binary]>=3.3.8",
+    "pydantic-settings>=2.16.2",
     "sqlalchemy>=2.1.8",
 ]
 
