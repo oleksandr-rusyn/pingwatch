@@ -5,9 +5,9 @@ from fastapi import Depends, FastAPI, HTTPException, status
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from pingwatch.db import SessionLocal
-from pingwatch.models import Monitor
-from pingwatch.schemas import MonitorCreate, MonitorRead
+from pingwatch.core.db import SessionLocal
+from pingwatch.core.models import Monitor
+from pingwatch.core.schemas import MonitorCreate, MonitorRead
 
 app = FastAPI(title="pingwatch")
 

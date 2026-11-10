@@ -1,6 +1,6 @@
-from pingwatch.checker import check_url
-from pingwatch.db import SessionLocal
-from pingwatch.models import Check
+from pingwatch.core.checker import check_url
+from pingwatch.core.db import SessionLocal
+from pingwatch.core.models import Check
 
 
 def main() -> None:
