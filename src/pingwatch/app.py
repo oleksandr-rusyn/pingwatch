@@ -3,6 +3,7 @@ from typing import Annotated
 
 from fastapi import Depends, FastAPI, HTTPException, status
 from sqlalchemy import select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from pingwatch.core.db import SessionLocal
@@ -22,16 +23,16 @@ SessionDep = Annotated[Session, Depends(get_session)]
 
 @app.post("/monitors", response_model=MonitorRead, status_code=status.HTTP_201_CREATED)
 def create_monitor(data: MonitorCreate, session: SessionDep) -> Monitor:
-    url = str(data.url)
-    existing = session.scalar(select(Monitor).where(Monitor.url == url))
-    if existing is not None:
+    monitor = Monitor(url=str(data.url))
+    session.add(monitor)
+    try:
+        session.commit()
+    except IntegrityError:
+        session.rollback()
         raise HTTPException(
             status_code=status.HTTP_409_CONFLICT,
             detail="This URL is already monitored",
-        )
-    monitor = Monitor(url=url)
-    session.add(monitor)
-    session.commit()
+        ) from None
     session.refresh(monitor)
     return monitor
 
