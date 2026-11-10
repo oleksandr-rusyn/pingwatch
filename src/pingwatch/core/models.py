@@ -14,6 +14,7 @@ class Check(Base):
     status_code: Mapped[int | None]
     response_time_ms: Mapped[float | None]
     is_up: Mapped[bool]
+    error: Mapped[str | None]
     checked_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )
