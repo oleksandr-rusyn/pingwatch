@@ -14,6 +14,7 @@ def test_site_is_up():
 
     assert result["status_code"] == 200
     assert result["is_up"] is True
+    assert result["error"] is None
 
 
 @respx.mock
@@ -35,3 +36,4 @@ def test_connection_error_means_down():
     assert result["status_code"] is None
     assert result["response_time_ms"] is None
     assert result["is_up"] is False
+    assert result["error"] == "ConnectError"
