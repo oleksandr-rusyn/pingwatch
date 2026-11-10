@@ -43,7 +43,7 @@ uv run pingwatch
 Start the API, with interactive docs at http://127.0.0.1:8000/docs:
 
 ```bash
-uv run fastapi dev src/pingwatch/api.py
+uv run fastapi dev src/pingwatch/app.py
 ```
 
 ## Tests
